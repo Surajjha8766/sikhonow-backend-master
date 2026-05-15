@@ -6,6 +6,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import masterRoutes from "./routes/masterRoutes.js";
 import courseRoutes from "./routes/courseRoutes.js";
+import bunnyRoutes from './routes/bunnyRoutes.js';
 
 
 
@@ -23,6 +24,7 @@ console.log("API Secret:", process.env.CLOUDINARY_API_SECRET);
 
 app.use("/api/master", masterRoutes);
 app.use("/api/courses", courseRoutes);
+app.use('/api/bunny', bunnyRoutes);
 
 app.get("/", (req, res) => {
   res.send("Master Backend Running");

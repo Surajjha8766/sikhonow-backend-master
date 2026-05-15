@@ -1,4 +1,54 @@
+// models/Course.js
 import mongoose from 'mongoose';
+
+const chapterSchema = new mongoose.Schema({
+  chapterNumber: {
+    type: Number,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  video: {
+    videoId: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+    thumbnailUrl: {
+      type: String,
+    },
+    length: {
+      type: String, // Format: "HH:MM:SS"
+      required: true,
+    },
+    size: {
+      type: Number,
+    },
+  },
+}, {
+  timestamps: true,
+});
+
+const previewVideoSchema = new mongoose.Schema({
+  videoId: {
+    type: String,
+  },
+  url: {
+    type: String,
+  },
+  thumbnailUrl: {
+    type: String,
+  },
+  length: {
+    type: String,
+  },
+});
 
 const courseSchema = new mongoose.Schema(
   {
@@ -44,6 +94,8 @@ const courseSchema = new mongoose.Schema(
         required: true,
       },
     },
+    previewVideo: previewVideoSchema,
+    chapters: [chapterSchema],
     category: {
       type: String,
       required: true,
